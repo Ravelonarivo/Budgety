@@ -2,6 +2,8 @@ import Item from './models/Item';
 
 import { elements } from './views/base';
 
+import * as itemView from './views/itemView';
+
 /**
  * Global state of the app
  * - Item object
@@ -33,4 +35,8 @@ document.addEventListener('keypress', event => {
     if (event.keyCode === 13 || event.which == 13) {
         controlItem();
     }
+});
+
+elements.inputType.addEventListener('change', () => {
+    itemView.changeInputsColor();
 });
