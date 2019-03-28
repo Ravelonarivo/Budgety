@@ -2,7 +2,10 @@ import Item from './models/Item';
 
 import { elements } from './views/base';
 
-
+/**
+ * Global state of the app
+ * - Item object
+ */
 const state = {
     items: {
         inc: [],
@@ -12,6 +15,9 @@ const state = {
 
 window.state = state;
 
+/**
+ * Item Controller
+ */
 const controlItem = () => {
 
     if (elements.inputDescription.value && elements.inputValue.value) {
