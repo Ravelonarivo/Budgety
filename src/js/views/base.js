@@ -1,6 +1,6 @@
 export const elements = {
-    addType: document.querySelector('.add__type'),
-    addDescription: document.querySelector('.add_description'),
-    addValue: document.querySelelector('.add_value'),
-    addButton: document.querySelector('.add_btn')
+    inputType: document.querySelector('.add__type'),
+    inputDescription: document.querySelector('.add__description'),
+    inputValue: document.querySelector('.add__value'),
+    inputButton: document.querySelector('.add__btn')
 };
