@@ -1,0 +1,30 @@
+import Item from './models/Item';
+
+import { elements } from './views/base';
+
+
+const state = {
+    items: {
+        inc: [],
+        exp: []
+    }
+};
+
+window.state = state;
+
+const controlItem = () => {
+
+    if (elements.inputDescription.value && elements.inputValue.value) {
+        const item = new Item(elements.inputType.value, elements.inputDescription.value, elements.inputValue.value);
+        
+        state.items[item.type].push(item);
+    }    
+}; 
+
+elements.inputButton.addEventListener('click', controlItem);
+
+document.addEventListener('keypress', event => {
+    if (event.keyCode === 13 || event.which == 13) {
+        controlItem();
+    }
+});
