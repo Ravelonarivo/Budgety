@@ -23,12 +23,17 @@ window.state = state;
 const controlItem = () => {
 
     if (elements.inputDescription.value && elements.inputValue.value) {
+
+        // Create item
         const item = new Item(elements.inputType.value, elements.inputDescription.value, elements.inputValue.value);  
         
+        // Add item to state
         state.items[item.type].push(item);
 
+        // Add item to dom
         itemView.addListItem(item);
 
+        // Calculate and update percentage
         if (state.items.exp.length > 0) {
             const totalIncome = state.items.inc.reduce((acc, curr) => acc + parseInt(curr.value), 0);
             const domItemsPercentage = document.querySelectorAll('.item__percentage');
