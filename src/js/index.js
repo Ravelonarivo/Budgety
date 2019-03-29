@@ -20,7 +20,7 @@ window.state = state;
 /**
  * Item Controller
  */
-const controlItem = () => {
+const controlItem = (event) => {
 
     if (elements.inputDescription.value && elements.inputValue.value) {
 
@@ -42,7 +42,19 @@ const controlItem = () => {
                 domItemsPercentage[index].textContent = el.percentage;
             })
         }
-    }    
+    } else if (event) {
+        let itemDomId = event.target.parentNode.parentNode.parentNode.parentNode.id;
+        if (itemDomId) {
+            itemDomId = itemDomId.split('-');
+            const itemType = itemDomId[0];
+            const itemId = itemDomId[1];
+            state.items[itemType].forEach((el, index) => {
+                if (el.id === itemId) {
+                    state.items[itemType].splice(index, 1);
+                }
+            })
+        }
+    } 
 }; 
 
 elements.inputButton.addEventListener('click', () => {
@@ -62,5 +74,6 @@ elements.inputType.addEventListener('change', () => {
 });
 
 elements.container.addEventListener('click', event => {
+    controlItem(event);
     itemView.deleteItemList(event);
 });
