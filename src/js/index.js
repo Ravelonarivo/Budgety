@@ -29,11 +29,15 @@ const controlItem = () => {
     }    
 }; 
 
-elements.inputButton.addEventListener('click', controlItem);
+elements.inputButton.addEventListener('click', () => {
+    controlItem();
+    itemView.cleanInputs();
+});
 
 document.addEventListener('keypress', event => {
     if (event.keyCode === 13 || event.which == 13) {
         controlItem();
+        itemView.cleanInputs();
     }
 });
 
