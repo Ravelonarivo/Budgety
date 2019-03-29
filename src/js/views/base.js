@@ -7,3 +7,21 @@ export const elements = {
     incomeList: document.querySelector('.income__list'),
     expensesList: document.querySelector('.expenses__list'),
 };
+
+export const formatNumber = (num, type) => {
+
+    let numSplit, int, dec;
+
+    num = Math.abs(num);
+    num = num.toFixed(2);
+
+    numSplit = num.split('.');
+    int = numSplit[0];
+    dec = numSplit[1];
+
+    if (int.length > 3) {
+        int = int.substring(0, int.length - 3) + ',' + int.substring(int.length - 3);
+    }
+
+    return (type === 'inc' ? '+' : '-') + int + '.' + dec;
+};

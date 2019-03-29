@@ -1,4 +1,4 @@
-import { elements } from './base';
+import { elements, formatNumber } from './base';
 
 export const changeInputsColor = () => {
    
@@ -20,7 +20,7 @@ export const addListItem = (item) => {
             <div class="item clearfix" id="income-${item.id}">
                 <div class="item__description">${item.description}</div>
                 <div class="right clearfix">
-                    <div class="item__value">+ ${item.value}</div>
+                    <div class="item__value">${formatNumber(parseFloat(item.value), item.type)}</div>
                     <div class="item__delete">
                         <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
                     </div>
@@ -35,7 +35,7 @@ export const addListItem = (item) => {
             <div class="item clearfix" id="expense-${item.id}">
                 <div class="item__description">${item.description}</div>
                 <div class="right clearfix">
-                    <div class="item__value">- ${item.value}</div>
+                    <div class="item__value">${formatNumber(parseFloat(item.value), item.type)}</div>
                     <div class="item__percentage">${item.percentage}</div>
                     <div class="item__delete">
                         <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
