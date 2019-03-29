@@ -60,3 +60,7 @@ document.addEventListener('keypress', event => {
 elements.inputType.addEventListener('change', () => {
     itemView.changeInputsColor();
 });
+
+elements.container.addEventListener('click', event => {
+    itemView.deleteItemList(event);
+});

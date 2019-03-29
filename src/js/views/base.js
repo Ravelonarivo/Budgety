@@ -6,6 +6,8 @@ export const elements = {
 
     incomeList: document.querySelector('.income__list'),
     expensesList: document.querySelector('.expenses__list'),
+
+    container: document.querySelector('.container')
 };
 
 export const formatNumber = (num, type) => {
