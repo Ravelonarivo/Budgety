@@ -12,7 +12,8 @@ export const elements = {
     budgetValue: document.querySelector('.budget__value'),
     budgetIncomeValue: document.querySelector('.budget__income--value'),
     budgetExpensesValue: document.querySelector('.budget__expenses--value'),
-    budgetExpensesPercentage: document.querySelector('.budget__expenses--percentage')
+    budgetExpensesPercentage: document.querySelector('.budget__expenses--percentage'),
+    budgetTitleMonth: document.querySelector('.budget__title--month')
 };
 
 export const formatNumber = (num, type) => {
@@ -31,4 +32,23 @@ export const formatNumber = (num, type) => {
     }
 
     return (type === 'inc' ? '+ ' : '- ') + int + '.' + dec;
+};
+
+export const getDate = () => {
+    const date = new Date();
+    const months = [
+        'January', 
+        'Fevruary', 
+        'March', 
+        'April', 
+        'May', 
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
+    ];
+    return `${months[date.getMonth()]} ${date.getFullYear()}`;
 };

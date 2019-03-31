@@ -1,16 +1,16 @@
-import { elements, formatNumber } from './base';
+import * as base from './base';
 
 export const changeInputsColor = () => {
    
-    elements.inputType.classList.toggle('red-focus');
-    elements.inputDescription.classList.toggle('red-focus');
-    elements.inputValue.classList.toggle('red-focus');
-    elements.inputButton.classList.toggle('red');
+    base.elements.inputType.classList.toggle('red-focus');
+    base.elements.inputDescription.classList.toggle('red-focus');
+    base.elements.inputValue.classList.toggle('red-focus');
+    base.elements.inputButton.classList.toggle('red');
 }; 
 
 export const cleanInputs = () => {
-    elements.inputDescription.value = '';
-    elements.inputValue.value = '';
+    base.elements.inputDescription.value = '';
+    base.elements.inputValue.value = '';
 };
 
 export const addListItem = (item) => {
@@ -20,7 +20,7 @@ export const addListItem = (item) => {
             <div class="item clearfix" id="inc-${item.id}">
                 <div class="item__description">${item.description}</div>
                 <div class="right clearfix">
-                    <div class="item__value">${formatNumber(parseFloat(item.value), item.type)}</div>
+                    <div class="item__value">${base.formatNumber(parseFloat(item.value), item.type)}</div>
                     <div class="item__delete">
                         <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
                     </div>
@@ -28,14 +28,14 @@ export const addListItem = (item) => {
             </div>
         `;
 
-        elements.incomeList.insertAdjacentHTML('beforeend', markup);
+        base.elements.incomeList.insertAdjacentHTML('beforeend', markup);
 
     } else if (item.type === 'exp') {
         markup = `
             <div class="item clearfix" id="exp-${item.id}">
                 <div class="item__description">${item.description}</div>
                 <div class="right clearfix">
-                    <div class="item__value">${formatNumber(parseFloat(item.value), item.type)}</div>
+                    <div class="item__value">${base.formatNumber(parseFloat(item.value), item.type)}</div>
                     <div class="item__percentage">${item.percentage}</div>
                     <div class="item__delete">
                         <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
@@ -44,7 +44,7 @@ export const addListItem = (item) => {
             </div>
         `;
 
-        elements.expensesList.insertAdjacentHTML('beforeend', markup);
+        base.elements.expensesList.insertAdjacentHTML('beforeend', markup);
     }  
 };
 

@@ -100,6 +100,7 @@ const controlBudget = () => {
     state.budget.calcValue();
     state.budget.calcPercentage();
 
+    budgetView.showDate();
     budgetView.showBudget(state.budget);
 }
 
