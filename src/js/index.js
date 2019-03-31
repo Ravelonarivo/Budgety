@@ -27,21 +27,23 @@ const controlItem = (event) => {
         // Create item
         const item = new Item(elements.inputType.value, elements.inputDescription.value, elements.inputValue.value);  
         
-        // Add item to state
-        state.items[item.type].push(item);
+        if (item.type === 'inc') {
+            // Add item to state
+            state.items[item.type].push(item);
+
+            // Calculate total income and add it to state
+            state.totalInc = state.items.inc.reduce((acc, curr) => acc + parseInt(curr.value), 0);
+        } else if (item.type === 'exp') {
+            // Calculate percentage
+            item.calcPercentage(state.totalInc);
+
+            // Add item to state
+            state.items[item.type].push(item);
+        }
 
         // Add item to dom
         itemView.addListItem(item);
-
-        // Calculate and update percentage
-        if (state.items.exp.length > 0) {
-            const totalIncome = state.items.inc.reduce((acc, curr) => acc + parseInt(curr.value), 0);
-            const domItemsPercentage = document.querySelectorAll('.item__percentage');
-            state.items.exp.forEach((el, index) => {
-                el.calcPercentage(totalIncome);
-                domItemsPercentage[index].textContent = el.percentage;
-            })
-        }
+        
     } else if (event) {
         let itemDomId = event.target.parentNode.parentNode.parentNode.parentNode.id;
         if (itemDomId) {
