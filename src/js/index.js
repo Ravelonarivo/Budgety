@@ -1,8 +1,10 @@
 import Item from './models/Item';
+import Budget from './models/Budget';
 
 import { elements } from './views/base';
 
 import * as itemView from './views/itemView';
+import * as budgetView from './views/budgetView';
 
 /**
  * Global state of the app
@@ -80,7 +82,27 @@ const controlItem = (event) => {
             }
         }
     } 
-}; 
+};
+
+
+/**
+ * Budget controller
+ */
+const controlBudget = () => {
+    
+    if (state.items.inc.length === 0 && state.items.exp.length === 0) {
+        state.budget = new Budget();
+    }
+
+    state.budget.calcValue();
+    state.budget.calcPercentage();
+
+    budgetView.showBudget(state.budget);
+}
+
+window.addEventListener('load', () => {
+    controlBudget();
+})
 
 elements.inputButton.addEventListener('click', () => {
     controlItem();

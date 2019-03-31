@@ -7,7 +7,12 @@ export const elements = {
     incomeList: document.querySelector('.income__list'),
     expensesList: document.querySelector('.expenses__list'),
 
-    container: document.querySelector('.container')
+    container: document.querySelector('.container'),
+
+    budgetValue: document.querySelector('.budget__value'),
+    budgetIncomeValue: document.querySelector('.budget__income--value'),
+    budgetExpensesValue: document.querySelector('.budget__expenses--value'),
+    budgetExpensesPercentage: document.querySelector('.budget__expenses--percentage')
 };
 
 export const formatNumber = (num, type) => {
@@ -25,5 +30,5 @@ export const formatNumber = (num, type) => {
         int = int.substring(0, int.length - 3) + ',' + int.substring(int.length - 3);
     }
 
-    return (type === 'inc' ? '+' : '-') + int + '.' + dec;
+    return (type === 'inc' ? '+ ' : '- ') + int + '.' + dec;
 };
