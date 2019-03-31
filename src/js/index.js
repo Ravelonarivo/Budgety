@@ -45,6 +45,9 @@ const controlItem = (event) => {
 
             // Add item to state
             state.items[item.type].push(item);
+
+            // Calculate total expenses and add it to state
+            state.totalExp = state.items.exp.reduce((acc, curr) => acc + parseInt(curr.value), 0);
         }
 
         // Add item to dom
@@ -71,6 +74,9 @@ const controlItem = (event) => {
                 if (state.items.exp.length > 0) {
                     itemView.updatePercentages(state.items.exp, state.totalInc);
                 } 
+            } else if (itemType === 'exp') {
+                // Update total expenses
+                state.totalExp = state.items.exp.reduce((acc, curr) => acc + parseInt(curr.value), 0);
             }
         }
     } 
