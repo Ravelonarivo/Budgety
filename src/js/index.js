@@ -92,6 +92,9 @@ const controlBudget = () => {
     
     if (state.items.inc.length === 0 && state.items.exp.length === 0) {
         state.budget = new Budget();
+    } else {
+        state.budget.income = state.items.inc.length > 0 ? state.totalInc : 0;
+        state.budget.expenses = state.items.exp.length > 0 ? state.totalExp : 0;
     }
 
     state.budget.calcValue();
@@ -106,12 +109,14 @@ window.addEventListener('load', () => {
 
 elements.inputButton.addEventListener('click', () => {
     controlItem();
+    controlBudget();
     itemView.cleanInputs();
 });
 
 document.addEventListener('keypress', event => {
     if (event.keyCode === 13 || event.which == 13) {
         controlItem();
+        controlBudget();
         itemView.cleanInputs();
     }
 });
@@ -122,5 +127,6 @@ elements.inputType.addEventListener('change', () => {
 
 elements.container.addEventListener('click', event => {
     controlItem(event);
+    controlBudget();
     itemView.deleteItemList(event);
 });

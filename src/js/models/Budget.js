@@ -9,6 +9,6 @@ export default class Budget {
     };
 
     calcPercentage() {
-        this.percentage = this.income > 0 ? (this.expenses / this.income) * 100 + '%' : '---';
+        this.percentage = (this.income > 0 && this.expenses > 0) ? Math.round((this.expenses / this.income) * 100) + '%' : '---';
     }
 }
