@@ -14,7 +14,7 @@ export const cleanInputs = () => {
 };
 
 export const addListItem = (item) => {
-    let markup;
+    let markup; 
     if (item.type === 'inc') {
         markup = `
             <div class="item clearfix" id="inc-${item.id}">
@@ -47,6 +47,14 @@ export const addListItem = (item) => {
         elements.expensesList.insertAdjacentHTML('beforeend', markup);
     }  
 };
+
+export const updatePercentages = (expenses, totalIncome) => {  
+    const domItemsPercentage = document.querySelectorAll('.item__percentage');
+    expenses.forEach((el, index) => {
+        el.calcPercentage(totalIncome);
+        domItemsPercentage[index].textContent = el.percentage;
+    })
+}
 
 export const deleteItemList = event => {
     const itemDom = event.target.parentNode.parentNode.parentNode.parentNode;

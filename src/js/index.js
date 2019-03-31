@@ -22,6 +22,7 @@ window.state = state;
  */
 const controlItem = (event) => {
 
+    // Add item
     if (elements.inputDescription.value && elements.inputValue.value) {
 
         // Create item
@@ -33,6 +34,11 @@ const controlItem = (event) => {
 
             // Calculate total income and add it to state
             state.totalInc = state.items.inc.reduce((acc, curr) => acc + parseInt(curr.value), 0);
+
+            // Update percentages
+            if (state.items.exp.length > 0) {
+                itemView.updatePercentages(state.items.exp, state.totalInc);
+            }      
         } else if (item.type === 'exp') {
             // Calculate percentage
             item.calcPercentage(state.totalInc);
@@ -43,18 +49,29 @@ const controlItem = (event) => {
 
         // Add item to dom
         itemView.addListItem(item);
-        
-    } else if (event) {
+
+    }
+    
+    // Remove item
+    if (event) {
         let itemDomId = event.target.parentNode.parentNode.parentNode.parentNode.id;
         if (itemDomId) {
             itemDomId = itemDomId.split('-');
             const itemType = itemDomId[0];
             const itemId = itemDomId[1];
-            state.items[itemType].forEach((el, index) => {
-                if (el.id === itemId) {
-                    state.items[itemType].splice(index, 1);
-                }
-            })
+            const itemIndex = state.items[itemType].findIndex(el => el.id === itemId);
+            // Remove item to state
+            state.items[itemType].splice(itemIndex, 1);
+
+            if (itemType === 'inc') {
+                // Update total income
+                state.totalInc = state.items.inc.reduce((acc, curr) => acc + parseInt(curr.value), 0);
+
+                // Update percentages
+                if (state.items.exp.length > 0) {
+                    itemView.updatePercentages(state.items.exp, state.totalInc);
+                } 
+            }
         }
     } 
 }; 
